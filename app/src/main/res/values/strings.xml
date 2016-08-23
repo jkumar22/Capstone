@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Capstone MI Weather and Facts</string>
+    <string name="title_activity_detail">InfoActivity</string>
+
+
+    <string name="textCityName">City Name</string>
+    <string name="txtTempInfo"> - Awesome\n - Smart\n - Helpful\n </string>
+    <string name="txtRateCity">Rate this city</string>
+    <string name="temperature">Current Weather  </string>
+    <string name="condition">Temperature</string>
+
+    <string name="about_app">About our app</string>
+    <string name="open_weather_maps_app_id">6fcf407550eb6cadd66f667f1e85c1bf</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+    <string name="DateAndTIme">Date And Time</string>
+
+    <string name="place_not_found">Sorry, no weather data found.</string>
+    <string name="weatherTxt">Current Weather at:   </string>
+    <string name="FunFacts"><![CDATA[Fun Facts & Places to See]]></string>
+
+</resources>

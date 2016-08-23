@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/weatherTxt">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCityName"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/textCityName"
+            android:textSize="30sp"
+            android:textStyle="bold"
+
+            android:layout_marginTop="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp" />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:id="@+id/imgcitypic"
+            android:src="@drawable/mackinawisland"
+            android:layout_gravity="center_horizontal"
+            android:longClickable="true"
+            android:layout_below="@+id/txtCityName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/temperature"
+            android:id="@+id/temperatureTextView"
+            android:textStyle="normal|bold"
+            android:typeface="serif"
+            android:layout_below="@+id/textClock"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/condition"
+            android:id="@+id/conditionTextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/temperatureTextView"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTempInfo"
+            android:text="@string/txtTempInfo"
+
+            android:layout_weight="2"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:typeface="normal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/txtFunFacts"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtRateCity"
+            android:text="@string/txtRateCity"
+
+            android:textSize="16sp"
+            android:typeface="monospace"
+            android:textColor="@android:color/holo_blue_light"
+            android:layout_below="@+id/txtTempInfo"
+            android:layout_alignStart="@+id/txtCityName"
+            android:textStyle="bold|italic"
+            android:gravity="center_horizontal" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rtBarCityRatingBar"
+            android:layout_gravity="center_horizontal"
+            android:rating="5"
+            android:numStars="5"
+            android:foregroundTint="@android:color/holo_orange_dark"
+            style="@android:style/Widget.Holo.Light.RatingBar"
+            android:maxHeight="40dp"
+            android:secondaryProgressTint="@android:color/holo_orange_light"
+            android:layout_alignWithParentIfMissing="true"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/txtRateCity"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="5dp" />
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textClock"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/imgcitypic"
+            android:layout_toEndOf="@+id/temperatureTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weatherTxt"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_alignBottom="@+id/textClock"
+            android:layout_alignEnd="@+id/conditionTextView"
+            android:layout_marginRight="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FunFacts"
+            android:id="@+id/txtFunFacts"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textColorHighlight="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/conditionTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+    </RelativeLayout>
+
+</ScrollView>
