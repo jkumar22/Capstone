@@ -1,3 +1,21 @@
+/* Hello and welcome to our "Weather App" Capstone Project. This program was developed by CIS 436
+   group students {Jaykumar Patel, Lynn Turnbull and Rafi Odisho} under professor John Baugh direction.
+   The application is designed to help the people who visit the state of Michigan to get updated and
+   accurate weather status for the top 10 most frequently visited cities. The application will update
+   it's users with facts about the top 10 cities in addition to the current temperature, time, humidity
+   and pressure. The user will have the opportunity to interact with application by rating his or her
+   favorite city.
+
+    @University of Michigan - Dearborn
+    @CIS 436 Capstone Project "Weather App"
+    @Student's: Jaykumar Patel
+                Lynn Turnbull
+                Rafi I. Odisho
+
+    @Professor: John Baugh
+    @August/24/2016
+*
+* */
 package com.awesome.jnpatel.capstone;
 
 import android.app.Activity;
