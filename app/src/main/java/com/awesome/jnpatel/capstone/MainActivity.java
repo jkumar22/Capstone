@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,8 @@ public class MainActivity extends Activity implements home_Fragment.HomeListener
         setContentView(R.layout.activity_main);
     }
 
+    // display info fragment when user select on the a city name,
+    // it will choose to make a new activity and fragment depending on the device and what activity is open
     public void itemClicked(long id) {
         View fragmentContainer = findViewById(R.id.fragment_container);
 
@@ -42,6 +45,7 @@ public class MainActivity extends Activity implements home_Fragment.HomeListener
         }
     }
 
+    // inflating the menu xml to dispaly on the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -49,6 +53,7 @@ public class MainActivity extends Activity implements home_Fragment.HomeListener
         return true;
     }
 
+    // display appropriate screen when appropriate menu item is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -57,7 +62,7 @@ public class MainActivity extends Activity implements home_Fragment.HomeListener
         int id = item.getItemId();
             this.id = id;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.change_city) {
+        if (id == R.id.aboutOurApp) {
             showInputDialog();
         }
         else if (id == R.id.dateAndTime)
@@ -75,6 +80,7 @@ public class MainActivity extends Activity implements home_Fragment.HomeListener
         return false;
     }
 
+    // setting a boolean to display temperature in Fahrenheit or Celcius
     public static boolean convertTemp() {
         if (id == R.id.menu_c)
         {
@@ -84,25 +90,33 @@ public class MainActivity extends Activity implements home_Fragment.HomeListener
         {
             return false;
         }
-
         return false;
     }
 
+    // toast message will be display when user choose Date And Time menu option
     private void showSecondINputDialog() {
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         Toast.makeText(this, currentDateTimeString,
                 Toast.LENGTH_LONG).show();
     }
 
+    // message to display in the Dialog box
+    String message = "This App will provide facts and Weather information about the most of the famous cities in the state of Michigan. \n \n"  +
+            "Application Developed by:- \n" +
+            "Students  :   Jaykumar Patel, Lynn Turnbull, Rafi Odisho. \n" +
+            "Professor :   John Baugh \n \n" +
+            "Sources:- \n" +
+            "Weather feed is provided by OpenWeather.com \n" +
+            "IndragniSoftSolutions Youtube Channel for the JASON tutorial \n" +
+            "";
+    // This dialog box will be displayed when user choose about the app in the menue
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App info");
-        builder.setPositiveButton("This Application was Developed by CIS-436 group student's" +
-                " Jaykumar Patel, Lynn Turnbull, Rafi Odisho under professor John Baugh supervision. \n" +
-                "This capston project will provide waether service feed for most of the famous cities in the state of Michigan.\n" +
-                "", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        builder.setMessage(message);
+        builder.setPositiveButton(" Done ", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
             }
         });
         builder.show();

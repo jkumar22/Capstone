@@ -25,6 +25,7 @@ public class InfoFragment extends Fragment {
     private long cityId; // cahange the name
 
     public String tempString;
+    // widgets  are defined
     TextView temperatureTextView;
     TextView conditionTextView;
     TextView cityName;
@@ -38,7 +39,7 @@ public class InfoFragment extends Fragment {
     // weather service fail flag
     private boolean weatherServicesHasFailed = false;
 
-
+    // shared preference variable is defined
     SharedPreferences preferences = null;
     SharedPreferences.Editor editor;
 
@@ -50,9 +51,7 @@ public class InfoFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        //alertToastStartMessage();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,17 +66,15 @@ public class InfoFragment extends Fragment {
         View view = getView();
         // shared preference getting reference and will save values forever
         preferences = getActivity().getSharedPreferences("preferences", Activity.MODE_PRIVATE);
-        //getActivity().getSharedPreferences(getString(R.xml.preferences), getActivity().MODE_PRIVATE);
-        //=getActivity().getSharedPreferences(getString(R.xml.preferences), Activity.MODE_PRIVATE);
 
         if (view != null) {
             cityName = (TextView) view.findViewById(R.id.txtCityName);
             cityImage = (ImageView) view.findViewById(R.id.imgcitypic);
             cityInfo = (TextView) view.findViewById(R.id.txtTempInfo);
             cityRatingBar = (RatingBar) view.findViewById(R.id.rtBarCityRatingBar);
-            //ImageView weatherIconImageView = (ImageView) view.findViewById(R.id.weatherIconImageView);
             temperatureTextView = (TextView) view.findViewById(R.id.temperatureTextView);
             conditionTextView = (TextView) view.findViewById(R.id.conditionTextView);
+            // weather widgets are updated in the renderWeather method
             // save rating bar when user change the rating
             ((RatingBar) view.findViewById(R.id.rtBarCityRatingBar))
                     .setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -109,33 +106,35 @@ public class InfoFragment extends Fragment {
         this.cityId = id;
     }
 
-        private void updateWeatherData ( final String city){
-            final String noSpaceCity = city.replace(" ", "");
-            new Thread() {
-                @Override
-                public void run() {
-                    // Mackinac Island
-                    final JSONObject json = RemoteFetch.getJSON(getActivity(), noSpaceCity);
-                    if (json == null) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getActivity(),
-                                        getActivity().getString(R.string.place_not_found),
-                                        Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    } else {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                renderWeather(json);
-                            }
-                        });
-                    }
+    // creating a new thread, to run runable in background to renderWeather on screen
+    private void updateWeatherData ( final String city){
+        final String noSpaceCity = city.replace(" ", "");
+        new Thread() {
+            @Override
+            public void run() {
+                // Mackinac Island
+                // getting weather info for the city
+                final JSONObject json = RemoteFetch.getJSON(getActivity(), noSpaceCity);
+                if (json == null) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() { // show toast if city entered is not found
+                            Toast.makeText(getActivity(),
+                                    getActivity().getString(R.string.place_not_found),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() { // if weather info is found then rander the weather
+                            renderWeather(json); // calling the method to display weather
+                        }
+                    });
                 }
-            }.start();
-        }
+            }
+        }.start();
+    }
 
 
     private void renderWeather(JSONObject json) {
@@ -144,13 +143,13 @@ public class InfoFragment extends Fragment {
             cityName.setText(cityname);
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
-            JSONObject main = json.getJSONObject("main");
+            JSONObject main = json.getJSONObject("main"); //
 
             conditionTextView.setText(details.getString("description").toUpperCase(Locale.US) + "\n"
                     + "Humidity: " + main.getString("humidity") + "%" + "\n" + "Pressure: "
-                    + main.getString("pressure") + "hPa");
+                    + main.getString("pressure") + "hPa"); // converting JSON in to string and diplay it in the view
 
-            boolean isCelcius = MainActivity.convertTemp();
+            boolean isCelcius = MainActivity.convertTemp(); // checking if user sepected celcius to disply units in C rather then F
             //temperatureTextView.setText(String.format("%.2f", main.getDouble("temp")) + " °C");
             if(isCelcius == false)
             {
@@ -164,15 +163,12 @@ public class InfoFragment extends Fragment {
                 tempString = String.valueOf(df.format(f)) + " °C";
                 temperatureTextView.setText(tempString);
             }
-            //temperatureTextView.setText(Double.toString(f) + " °F");
-
+//            temperatureTextView.setText(Double.toString(f) + " °F");
 //            DateFormat df = DateFormat.getDateTimeInstance();
 //            String updateOn = df.format(new Date(json.getLong("dt") * 1000));
 //            updateField.setText("Last update: " + updateOn);
-
-            setWeatherIcon(details.getInt("id"), json.getJSONObject("sys").getLong("sunrise") * 1000,
-                    json.getJSONObject("sys").getLong("sunset") * 1000);
-
+//            setWeatherIcon(details.getInt("id"), json.getJSONObject("sys").getLong("sunrise") * 1000,
+//                    json.getJSONObject("sys").getLong("sunset") * 1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -183,6 +179,7 @@ public class InfoFragment extends Fragment {
         savedInstanceState.putLong("cityId", cityId);
     }
 
+    // methos to update watherIcon but decided on to use this on our
     private void setWeatherIcon(int actualId, long sunrise, long sunset) {
         int id = actualId / 100;
         String icon = "";
@@ -213,6 +210,7 @@ public class InfoFragment extends Fragment {
     }
 
 
+    // each time user select a new city update weather data method will be called to update the weather info on the screen
     public void changeCity(String city) {
         updateWeatherData(city);
     }

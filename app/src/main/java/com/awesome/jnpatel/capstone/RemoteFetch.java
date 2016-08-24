@@ -10,11 +10,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
+// This class will fetch the data from the openweather data, and return it to InfoFrament
 public class RemoteFetch {
 
     private static final String OPEN_WEATHER_MAP_API =
             "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric";
-
     public static JSONObject getJSON(Context context, String city) {
         try {
             URL url = new URL(String.format(OPEN_WEATHER_MAP_API, city));

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Capstone MI Weather and Facts</string>
+    <string name="app_name">Cities in Michigan</string>
     <string name="title_activity_detail">InfoActivity</string>
 
 

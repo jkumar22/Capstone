@@ -5,6 +5,8 @@ import android.graphics.Color;
 /**
  * Created by jnpatel on 7/15/16.
  */
+
+// This class will hold all the information about the cities that will used in the app
 public class Data {
     private String name;
     private String info;
