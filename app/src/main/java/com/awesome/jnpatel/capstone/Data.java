@@ -14,6 +14,7 @@ public class Data {
     private int color;
 
 // Comment was added here :D
+    // Added a second comment!
 
     public static final Data[] data = {
                     // name of Michigan Cities
