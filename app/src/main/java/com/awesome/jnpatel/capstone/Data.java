@@ -13,6 +13,7 @@ public class Data {
     private int pic;
     private int color;
 
+// Comment was added here :D
 
     public static final Data[] data = {
                     // name of Michigan Cities
